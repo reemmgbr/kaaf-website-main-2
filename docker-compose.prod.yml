@@ -1,0 +1,14 @@
+services:
+  kaadwebsite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kaad-website
+    restart: always
+    ports:
+      - "3003:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+
