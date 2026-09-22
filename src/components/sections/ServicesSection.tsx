@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GlowButton } from "@/components/ui/GlowButton";
+
+import { motion } from "motion/react";
 
 const servicesData = [
   {
@@ -50,38 +52,52 @@ interface Service {
 }
 
 function ServiceCard({ service }: { service: Service }) {
-  const [style, setStyle] = useState({
-    background: "linear-gradient(224.16deg, #D2BB79 16.6%, rgba(255, 255, 255, 0) 62.77%)",
-    transition: "background 0.5s ease-out",
-  });
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const mouseX = Math.round(e.clientX - rect.left);
-    const mouseY = Math.round(e.clientY - rect.top);
+    const x = e.clientX - card.getBoundingClientRect().left;
+    const y = e.clientY - card.getBoundingClientRect().top;
 
-    setStyle({
-      background: `radial-gradient(450px circle at ${mouseX}px ${mouseY}px, #D2BB79 0%, rgba(210, 187, 121, 0.45) 35%, rgba(255, 255, 255, 0) 75%)`,
-      transition: "background 0.05s ease-out",
-    });
-  };
+    // throttle بسيط عن طريق requestAnimationFrame عشان الأداء
+    if (frameRef.current !== null) return;
 
-  const handleMouseLeave = () => {
-    setStyle({
-      background: "linear-gradient(224.16deg, #D2BB79 16.6%, rgba(255, 255, 255, 0) 62.77%)",
-      transition: "background 0.5s ease-out",
+    frameRef.current = requestAnimationFrame(() => {
+      spotlightRef.current?.style.setProperty("--x", `${x}px`);
+      spotlightRef.current?.style.setProperty("--y", `${y}px`);
+      frameRef.current = null;
     });
   };
 
   return (
     <div
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative rounded-3xl p-[3px] shadow-2xl group transition-all duration-300 hover:scale-[1.01]"
-      style={style}
+      className="group relative rounded-3xl p-[3px] shadow-2xl transition-transform duration-300 hover:scale-[1.01] overflow-hidden"
     >
-      <div className="w-full h-full rounded-[calc(1.5rem-3px)] bg-[#03111F] p-6 sm:p-8 flex flex-col items-center text-center justify-between space-y-6">
+      {/* الطبقة 1: الجراديانت الافتراضي - ظاهر طول الوقت */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 rounded-3xl"
+        style={{
+          background:
+            "linear-gradient(224.16deg, #D2BB79 16.6%, rgba(255, 255, 255, 0) 62.77%)",
+        }}
+      />
+
+      {/* الطبقة 2: السبوت لايت اللي بيتبع الماوس - شفاف عادي، يظهر عند الهوفر */}
+      <div
+        ref={spotlightRef}
+        aria-hidden="true"
+        className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(450px circle at var(--x, 50%) var(--y, 50%), #D2BB79 0%, rgba(210, 187, 121, 0.45) 35%, rgba(255, 255, 255, 0) 75%)",
+        }}
+      />
+
+      {/* المحتوى فوق الطبقتين */}
+      <div className="relative z-10 w-full h-full rounded-[calc(1.5rem-3px)] bg-[#03111F] p-6 sm:p-8 flex flex-col items-center text-center justify-between space-y-6">
         {/* Card Banner Image Frame */}
         <div className="relative w-full aspect-[1.85/1] rounded-2xl overflow-hidden border border-[#5E96B7]/20 shadow-inner">
           <Image
@@ -124,28 +140,58 @@ export function ServicesSection() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="relative w-full py-16 sm:py-24 bg-[#03111F] overflow-hidden"
+      className="relative w-full   bg-[#03111F] overflow-hidden"
     >
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Section Badge Header */}
-        <div className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5">
-          خدماتنا
-        </div>
+        <motion.div
+      className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5"
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{
+        duration: 0.7,
+        ease: "easeOut",
+      }}
+    >
+      خدماتنا
+    </motion.div>
 
         {/* Section Heading */}
-        <h2
-          id="services-heading"
-          className="font-forma text-3xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-6 leading-tight"
-        >
-          ما تحتاجه علامتك التجارية من خدمات تسويقية في مكان واحد!
-        </h2>
+    <motion.h2
+      id="services-heading"
+      className="font-forma text-2xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-6 leading-tight"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{
+        duration: 0.7,
+        delay: 0.15,
+        ease: "easeOut",
+      }}
+    >
+      ما تحتاجه علامتك التجارية من خدمات تسويقية في مكان واحد!
+    </motion.h2>
 
         {/* CTA View All Services Button */}
-        <div className="flex justify-center mb-12 sm:mb-16">
-          <GlowButton href="/services">شاهد جميع خدماتنا</GlowButton>
-        </div>
+       <motion.div
+      className="flex justify-center mb-12 sm:mb-16"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{
+        duration: 0.6,
+        delay: 0.3,
+        ease: "easeOut",
+      }}
+    >
+      <GlowButton href="/services">
+        شاهد جميع خدماتنا
+      </GlowButton>
+    </motion.div>
 
-        {/* Services Cards 2x2 Grid with Interactive 3D Tilt and Moving Gradient Border */}
+
+        {/* Services Cards 2x2 Grid with Interactive Spotlight Gradient Border */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 w-full max-w-6xl mx-auto">
           {servicesData.map((service) => (
             <ServiceCard key={service.id} service={service} />

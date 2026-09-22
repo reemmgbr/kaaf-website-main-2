@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { GlowButton } from "@/components/ui/GlowButton";
+import { motion } from "motion/react";
 
 const carouselImages = [
   {
@@ -85,7 +86,7 @@ export function ResultsSection() {
     <section
       id="results"
       aria-labelledby="results-heading"
-      className="relative w-full py-16 sm:py-24 bg-[#03111F] overflow-hidden flex flex-col items-center justify-center select-none"
+      className="relative w-full py-8 sm:py-24 bg-[#03111F] overflow-hidden flex flex-col items-center justify-center select-none"
     >
       {/* Side background watermark graphics */}
       <div
@@ -119,22 +120,37 @@ export function ResultsSection() {
       {/* Header Content Container */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Header Badge */}
-        <div className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5">
-          نتائج عملائنا
-        </div>
+     <motion.div
+  className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5"
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.5 }}
+  transition={{ duration: 0.7, ease: "easeOut" }}
+>
+  نتائج عملائنا
+</motion.div>
 
         {/* Section Heading */}
-        <h2
-          id="results-heading"
-          className="font-forma text-3xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-6 leading-tight"
-        >
-          شاهد كيف حقق عملاؤنا نموًا ملحوظًا.
-        </h2>
-
+  <motion.h2
+  id="results-heading"
+  className="font-forma text-3xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-6 leading-tight"
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.5 }}
+  transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+>
+  شاهد كيف حقق عملاؤنا نموًا ملحوظًا.
+</motion.h2>
         {/* CTA Button */}
-        <div className="flex justify-center mb-8 sm:mb-12">
-          <GlowButton href="#contact">تواصل معنا الان</GlowButton>
-        </div>
+   <motion.div
+  className="flex justify-center mb-8 sm:mb-12"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.5 }}
+  transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+>
+  <GlowButton href="#contact">تواصل معنا الان</GlowButton>
+</motion.div>
       </div>
 
       {/* Tablet Mockup Wrapper with Drag Support */}

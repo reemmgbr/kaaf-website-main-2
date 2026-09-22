@@ -1,12 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import { GlowButton } from "@/components/ui/GlowButton";
+        import { motion } from "motion/react";
+
 
 export function GrowthOpportunitySection() {
   return (
     <section
       id="growth-opportunity"
       aria-labelledby="growth-opportunity-heading"
-      className="relative w-full py-16 sm:py-24 bg-[#03111F] overflow-hidden flex items-center justify-center"
+      className="relative w-full sm:py-12 bg-[#03111F] overflow-hidden flex items-center justify-center"
     >
       {/* Ambient background glow effects */}
       <div
@@ -21,26 +25,89 @@ export function GrowthOpportunitySection() {
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
           {/* Text Content Column (Positioned on the RIGHT side in RTL) */}
-          <div className="w-full lg:w-1/2 flex flex-col items-start space-y-6 text-start order-1">
-            {/* Main Heading */}
-            <h2
-              id="growth-opportunity-heading"
-              className="font-forma text-4xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight leading-[1.25] drop-shadow-md"
-            >
-              ليش تضيع فرصة نموك؟
-            </h2>
 
-            {/* Paragraph Description */}
-            <p className="font-forma text-lg sm:text-xl lg:text-2xl text-[#FFF7E6] font-medium leading-relaxed max-w-xl">
-              احصل على استشارة مجانية وصادقة الآن من فريق يبي يساعدك لا يريد منك
-              بس فلوس.
-            </p>
+<motion.div
+  className="w-full lg:w-1/2 flex flex-col items-center sm:items-start space-y-6 text-start order-1"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{
+    once: false,
+    amount: 0.25,
+  }}
+  variants={{
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }}
+>
+  {/* Main Heading */}
+  <motion.h2
+    id="growth-opportunity-heading"
+    className="font-forma text-4xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight leading-[1.25] drop-shadow-md"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 16,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.9,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    ليش تضيع فرصة نموك؟
+  </motion.h2>
 
-            {/* Glowing CTA Button */}
-            <div className="pt-3 sm:pt-5">
-              <GlowButton href="#contact">تواصل معنا الان</GlowButton>
-            </div>
-          </div>
+  {/* Paragraph Description */}
+  <motion.p
+    className="font-forma text-lg sm:text-xl text-center sm:text-start lg:text-2xl text-[#FFF7E6] font-medium leading-relaxed max-w-xl"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 12,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.8,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    احصل على استشارة مجانية وصادقة الآن من فريق يبي يساعدك لا يريد منك
+    بس فلوس.
+  </motion.p>
+
+  {/* Glowing CTA Button */}
+  <motion.div
+    className="pt-3 sm:pt-5"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 10,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.8,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    <GlowButton href="#contact">تواصل معنا الان</GlowButton>
+  </motion.div>
+</motion.div>
 
           {/* Glass 3D Logo Animated GIF Column (Positioned on the LEFT side in RTL) */}
           <div className="w-full lg:w-1/2 flex items-center justify-center order-2">

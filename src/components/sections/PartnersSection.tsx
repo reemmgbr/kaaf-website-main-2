@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import React from "react";
 import Image from "next/image";
 
@@ -27,27 +30,89 @@ export function PartnersSection() {
       className="relative w-full bg-[#03111F] overflow-hidden"
     >
       {/* ── Section Header ── */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-10 sm:pb-14">
-        <div className="flex flex-col items-center text-center space-y-3">
-          {/* Badge */}
-          <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-sm sm:text-base mb-1 shadow-md">
-            شركاء النجاح
-          </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8   pb-10 sm:pb-14">
+       <motion.div
+      className="flex flex-col items-center text-center space-y-3"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{
+        once: false,
+        amount: 0.25,
+      }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.12,
+          },
+        },
+      }}
+    >
+      {/* Badge */}
+      <motion.div
+        className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-[16px] sm:text-base mb-3 shadow-md"
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 12,
+          },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+        }}
+      >
+        شركاء النجاح
+      </motion.div>
 
-          {/* Heading */}
-          <h2
-            id="partners-heading"
-            className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
-          >
-            ورا كل إنجاز، شراكة صنعت الفرق.
-          </h2>
+      {/* Heading */}
+      <motion.h2
+        id="partners-heading"
+        className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 16,
+          },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+        }}
+      >
+        ورا كل إنجاز، شراكة صنعت الفرق.
+      </motion.h2>
 
-          {/* Subtitle */}
-          <p className="font-forma text-base sm:text-lg text-[#FFF7E6] font-bold max-w-3xl text-center leading-relaxed pt-1">
-            ما نختار نكون مجرد مزوّد خدمات، نختار نكون شريك يفهم رؤيتك، يعيش معك التحديات، ويشتغل معك
-            عشان نصنع نمو مستدام ونتائج تفرق فعلًا.
-          </p>
-        </div>
+      {/* Subtitle */}
+      <motion.p
+        className="font-forma text-base sm:text-lg text-[#FFF7E6] font-bold max-w-3xl text-center leading-relaxed pt-1"
+        variants={{
+          hidden: {
+            opacity: 0,
+            y: 12,
+          },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+        }}
+      >
+        ما نختار نكون مجرد مزوّد خدمات، نختار نكون شريك يفهم رؤيتك، يعيش معك
+        التحديات، ويشتغل معك عشان نصنع نمو مستدام ونتائج تفرق فعلًا.
+      </motion.p>
+    </motion.div>
       </div>
 
       {/* ── Marquee Logo Strip with 3px gradient border and soft side fades ── */}

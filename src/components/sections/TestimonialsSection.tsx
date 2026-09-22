@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const testimonials = [
   {
@@ -82,23 +83,40 @@ export function TestimonialsSection() {
     <section 
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="relative w-full py-16 sm:py-24 bg-[#03111F] overflow-hidden flex flex-col items-center justify-center select-none"
+      className="relative w-full py-12 sm:pt-14 sm:pb-12 bg-[#03111F] overflow-hidden flex flex-col items-center justify-center select-none"
     >
       {/* Content Container */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Header Badge */}
-        <div className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5">
-          آراء العملاء
-        </div>
+<motion.div
+  className="inline-flex items-center px-6 py-2.5 rounded-full bg-[#FFF7E6] text-[#03111F] font-forma text-base sm:text-lg lg:text-xl font-bold shadow-lg mb-5"
+  initial={{ opacity: 0, y: 12 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.25 }}
+  transition={{
+    duration: 0.8,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+>
+  آراء العملاء
+</motion.div>
 
-        {/* Section Heading */}
-        <h2
-          id="testimonials-heading"
-          className="font-forma text-3xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-12 sm:mb-16 leading-tight"
-        >
-          ما يمدح السوق إلا مَن ربح فيه!
-        </h2>
+{/* Section Heading */}
+<motion.h2
+  id="testimonials-heading"
+  className="font-forma text-3xl sm:text-5xl lg:text-6xl font-bold text-[#D2BB79] tracking-tight drop-shadow-md max-w-4xl mx-auto mb-1 sm:mb-16 leading-tight"
+  initial={{ opacity: 0, y: 16 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.25 }}
+  transition={{
+    duration: 0.9,
+    delay: 0.1,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+>
+  ما يمدح السوق إلا مَن ربح فيه!
+</motion.h2>
 
         {/* 3 Cards Slider Container with Drag & Swipe Support */}
         <div 

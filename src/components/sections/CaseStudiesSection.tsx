@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { caseStudiesData, caseStudyCategories } from "@/data/caseStudies";
+import { motion } from "motion/react";
 
 export function CaseStudiesSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -127,7 +128,7 @@ export function CaseStudiesSection() {
     <section
       id="case-studies"
       aria-labelledby="case-studies-heading"
-      className="relative w-full py-16 sm:py-24 bg-[#03111F] overflow-hidden"
+      className="relative w-full  bg-[#03111F] overflow-hidden"
     >
       {/* Background ambient glow */}
       <div
@@ -137,20 +138,58 @@ export function CaseStudiesSection() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center space-y-3 mb-10 sm:mb-14">
-          {/* Badge */}
-          <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-sm sm:text-base mb-1 shadow-md">
-            خبرتنا
-          </div>
+   {/* Section Header */}
+<div className="flex flex-col items-center text-center space-y-3 mb-8 sm:mb-14">
+  {/* Badge */}
+  <motion.div
+    className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-[16px] sm:text-base mb-4 shadow-md"
+    initial={{
+      opacity: 0,
+      y: 25,
+      scale: 0.9,
+    }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+      scale: 1,
+    }}
+    viewport={{
+      once: false,
+      amount: 0.5,
+    }}
+    transition={{
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+  >
+    خبرتنا
+  </motion.div>
 
-          {/* Heading */}
-          <h2
-            id="case-studies-heading"
-            className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
-          >
-            قصص نجاح حقيقية من عملائنا
-          </h2>
-        </div>
+  {/* Heading */}
+  <motion.h2
+    id="case-studies-heading"
+    className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
+    initial={{
+      opacity: 0,
+      y: 30,
+    }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+    }}
+    viewport={{
+      once: false,
+      amount: 0.5,
+    }}
+    transition={{
+      duration: 0.8,
+      delay: 0.15,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+  >
+    قصص نجاح حقيقية من عملائنا
+  </motion.h2>
+</div>
 
         {/* Filter Tabs Bar with Grab-to-Scroll & Left/Right Navigation Arrows */}
         <div className="relative w-full flex items-center justify-center mb-10 sm:mb-16">

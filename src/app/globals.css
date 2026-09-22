@@ -5,20 +5,24 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-brand-dark-navy: #03111F;
-  --color-brand-gold: #D2BB79;
-  --color-brand-cream: #FFF7E6;
-  --color-brand-black: #0B0B0B;
-  --color-brand-steel-blue: #5E96B7;
-  --color-brand-light-grey: #E9EDF3;
+  --color-brand-dark-navy: #03111f;
+  --color-brand-gold: #d2bb79;
+  --color-brand-cream: #fff7e6;
+  --color-brand-black: #0b0b0b;
+  --color-brand-steel-blue: #5e96b7;
+  --color-brand-light-grey: #e9edf3;
 
-  --font-forma: "Forma DJR Arabic Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-sans: "Forma DJR Arabic Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-forma:
+    "Forma DJR Arabic Display", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans:
+    "Forma DJR Arabic Display", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 @font-face {
-  font-family: 'Forma DJR Arabic Display';
-  src: local('Forma DJR Arabic Display'), local('FormaDJRArabicDisplay');
+  font-family: "Forma DJR Arabic Display";
+  src: local("Forma DJR Arabic Display"), local("FormaDJRArabicDisplay");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -32,15 +36,20 @@ html {
 body {
   direction: rtl;
   text-align: right;
-  background-color: #03111F;
-  color: #FFF7E6;
+  background-color: #03111f;
+  color: #fff7e6;
   font-family: var(--font-forma);
   min-height: 100vh;
   margin: 0;
 }
 
 @media (pointer: fine) {
-  body, a, button, input, select, textarea {
+  body,
+  a,
+  button,
+  input,
+  select,
+  textarea {
     cursor: none !important;
   }
 }
@@ -50,14 +59,14 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #03111F;
+  background: #03111f;
 }
 ::-webkit-scrollbar-thumb {
-  background: #5E96B7;
+  background: #5e96b7;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D2BB79;
+  background: #d2bb79;
 }
 
 @theme inline {
@@ -181,8 +190,11 @@ body {
   }
   html {
     @apply font-sans;
+    scroll-behavior: auto;
   }
-  button, a[role="button"], .btn {
+  button,
+  a[role="button"],
+  .btn {
     white-space: nowrap !important;
   }
 }
@@ -214,7 +226,11 @@ body {
   border-bottom: 0px;
   border-left: 0px;
   border-right: 0px;
-  border-image-source: linear-gradient(91.76deg, #D2BB79 1.49%, rgba(3, 17, 31, 0) 61.98%);
+  border-image-source: linear-gradient(
+    91.76deg,
+    #d2bb79 1.49%,
+    rgba(3, 17, 31, 0) 61.98%
+  );
   border-image-slice: 1;
 }
 
@@ -248,13 +264,25 @@ body {
 }
 
 .glow-button-gradient {
-  background: linear-gradient(to bottom, #03111F 0%, #03111F 50%, rgba(94, 150, 183, 0.3) 100%);
+  background: linear-gradient(
+    to bottom,
+    #03111f 0%,
+    #03111f 50%,
+    rgba(94, 150, 183, 0.3) 100%
+  );
   background-size: 100% 100%;
   transition: all 0.3s ease-out;
 }
 
 .glow-button-gradient:hover {
-  background: linear-gradient(135deg, #03111F 0%, #03111F 30%, rgba(94, 150, 183, 0.45) 55%, #03111F 80%, rgba(94, 150, 183, 0.45) 100%);
+  background: linear-gradient(
+    135deg,
+    #03111f 0%,
+    #03111f 30%,
+    rgba(94, 150, 183, 0.45) 55%,
+    #03111f 80%,
+    rgba(94, 150, 183, 0.45) 100%
+  );
   background-size: 250% 250%;
   animation: glowButtonGradient 2.8s ease-in-out infinite;
 }

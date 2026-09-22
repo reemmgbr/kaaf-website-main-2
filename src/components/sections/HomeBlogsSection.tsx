@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlogBySlug, type BlogPost } from "@/data/blogs";
+import { motion } from "motion/react";
 
 export function HomeBlogsSection() {
   const blogSlugs = [
@@ -28,25 +30,89 @@ export function HomeBlogsSection() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl lg:max-w-7xl">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center space-y-3 mb-12 sm:mb-16">
-          {/* Badge */}
-          <div className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-sm sm:text-base mb-1 shadow-md">
-            المدونه
-          </div>
+   <motion.div
+  className="flex flex-col items-center text-center space-y-3 mb-12 sm:mb-16"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{
+    once: false,
+    amount: 0.5,
+  }}
+  variants={{
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  }}
+>
+  {/* Badge */}
+  <motion.div
+    className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-white text-[#03111F] font-forma font-bold text-[16px] sm:text-base mb-3 shadow-md"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 25,
+        scale: 0.9,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    المدونه
+  </motion.div>
 
-          {/* Heading */}
-          <h2
-            id="home-blogs-heading"
-            className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
-          >
-            أفكار تستحق أن تُقرأ
-          </h2>
+  {/* Heading */}
+  <motion.h2
+    id="home-blogs-heading"
+    className="font-forma text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D2BB79] tracking-tight leading-tight"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 30,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.8,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    أفكار تستحق أن تُقرأ
+  </motion.h2>
 
-          {/* Subtitle */}
-          <p className="font-forma text-base sm:text-lg text-[#FFF7E6] font-bold max-w-2xl text-center leading-relaxed pt-1">
-            محتوى مفيد، أفكار ملهمة، ونضائح تساعدك على تطوير مشروعك وصنع تجربة رقمية أفضل.
-          </p>
-        </div>
+  {/* Subtitle */}
+  <motion.p
+    className="font-forma text-base sm:text-lg text-[#FFF7E6] font-bold max-w-2xl text-center leading-relaxed pt-1"
+    variants={{
+      hidden: {
+        opacity: 0,
+        y: 20,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      },
+    }}
+  >
+    محتوى مفيد، أفكار ملهمة، ونضائح تساعدك على تطوير مشروعك وصنع تجربة رقمية أفضل.
+  </motion.p>
+</motion.div>
 
         {/* 3 Featured Blog Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-6xl mx-auto">
