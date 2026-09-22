@@ -26,13 +26,10 @@ export function CustomCursor() {
     // Very short trail
     const POINT_COUNT = 8;
 
-    const points: Point[] = Array.from(
-      { length: POINT_COUNT },
-      () => ({
-        x: -100,
-        y: -100,
-      })
-    );
+    const points: Point[] = Array.from({ length: POINT_COUNT }, () => ({
+      x: -100,
+      y: -100,
+    }));
 
     let hasMoved = false;
     let isRunning = false;
@@ -78,8 +75,8 @@ export function CustomCursor() {
 
       hoveredState = Boolean(
         target?.closest(
-          "a, button, input, textarea, select, [role='button'], .hover-target"
-        )
+          "a, button, input, textarea, select, [role='button'], .hover-target",
+        ),
       );
 
       setIsVisible(true);
@@ -115,8 +112,7 @@ export function CustomCursor() {
       points[0].y += (mouse.y - points[0].y) * 0.65;
 
       let movement =
-        Math.abs(mouse.x - points[0].x) +
-        Math.abs(mouse.y - points[0].y);
+        Math.abs(mouse.x - points[0].x) + Math.abs(mouse.y - points[0].y);
 
       /*
        * Short and fast-following tail
@@ -152,17 +148,10 @@ export function CustomCursor() {
           // Fade quickly toward the end
           const opacity = 1 - progress;
 
-          const baseWidth = hoveredState
-            ? 2.8
-            : clickedState
-            ? 1.8
-            : 2.2;
+          const baseWidth = hoveredState ? 2.8 : clickedState ? 1.8 : 2.2;
 
           // Strong taper
-          const lineWidth = Math.max(
-            0.5,
-            baseWidth * (1 - progress * 0.8)
-          );
+          const lineWidth = Math.max(0.5, baseWidth * (1 - progress * 0.8));
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
@@ -171,23 +160,17 @@ export function CustomCursor() {
           ctx.lineWidth = lineWidth;
 
           if (hoveredState) {
-            ctx.strokeStyle = `rgba(255, 247, 230, ${
-              opacity * 0.65
-            })`;
+            ctx.strokeStyle = `rgba(255, 247, 230, ${opacity * 0.65})`;
 
             ctx.shadowColor = "rgba(255, 247, 230, 0.2)";
             ctx.shadowBlur = 5;
           } else if (clickedState) {
-            ctx.strokeStyle = `rgba(94, 150, 183, ${
-              opacity * 0.6
-            })`;
+            ctx.strokeStyle = `rgba(94, 150, 183, ${opacity * 0.6})`;
 
             ctx.shadowColor = "rgba(94, 150, 183, 0.18)";
             ctx.shadowBlur = 4;
           } else {
-            ctx.strokeStyle = `rgba(210, 187, 121, ${
-              opacity * 0.6
-            })`;
+            ctx.strokeStyle = `rgba(210, 187, 121, ${opacity * 0.6})`;
 
             ctx.shadowColor = "rgba(210, 187, 121, 0.18)";
             ctx.shadowBlur = 4;
@@ -201,11 +184,7 @@ export function CustomCursor() {
          */
         const head = points[0];
 
-        const radius = hoveredState
-          ? 4
-          : clickedState
-          ? 2.5
-          : 3;
+        const radius = hoveredState ? 4 : clickedState ? 2.5 : 3;
 
         ctx.beginPath();
         ctx.arc(head.x, head.y, radius, 0, Math.PI * 2);
@@ -273,5 +252,3 @@ export function CustomCursor() {
     />
   );
 }
-
-
