@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export function Footer() {
   const currentYear = 2026;
@@ -200,7 +201,7 @@ export function Footer() {
         <p className="font-forma text-xs sm:text-sm text-[#FFF7E6]/70 font-medium">
           جميع الحقوق محفوظة لدى شركة كاف © {currentYear}
         </p>
-
+  <ScrollToTop />
       </div>
     </footer>
   );
