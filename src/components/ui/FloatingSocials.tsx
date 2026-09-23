@@ -123,7 +123,7 @@ export function FloatingSocials() {
           group/social
           relative flex
           h-11 w-11
-          sm:h-12 sm:w-12
+          sm:h-10 sm:w-10
           items-center justify-center
           rounded-full
           bg-gradient-to-b
@@ -177,7 +177,7 @@ export function FloatingSocials() {
           aria-label={isOpen ? "إغلاق روابط التواصل" : "فتح روابط التواصل"}
           aria-expanded={isOpen}
           className="
-            group relative flex h-14 w-14 sm:h-[55px] sm:w-[55px]
+            group relative flex h-14 w-14 sm:h-[50px] sm:w-[50px]
             items-center justify-center
             rounded-full
             bg-gradient-to-b from-[#0C2436] to-[#03111F]
@@ -209,7 +209,7 @@ export function FloatingSocials() {
             height={28}
             className="
               relative z-10
-              h-7 w-7 sm:h-8 sm:w-8
+              h-7 w-7 sm:h-7 sm:w-7
               object-contain
               drop-shadow-[0_0_6px_rgba(210,187,121,0.4)]
             "
