@@ -31,18 +31,18 @@ export function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 start-0 end-0 z-50 w-full transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 start-0 end-0 z-50 w-full  transition-all duration-300 ease-in-out ${
         scrolled 
           ? "bg-[#03111F]/85 backdrop-blur-md border-b border-[#D2BB79]/20 py-3 shadow-2xl" 
           : "bg-transparent py-4 sm:py-6"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[50px] flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[50px] flex items-center justify-between ">
         
         {/* Desktop Navigation Links - Centered in Header on Big Screens (md and above) */}
         <nav 
           aria-label="التنقل الرئيسي" 
-          className="hidden md:flex items-center gap-1.5 sm:gap-2.5 z-10 absolute left-1/2 -translate-x-1/2"
+          className="hidden md:flex items-center gap-1.5 sm:gap-2.5 z-10 absolute left-1/2 -translate-x-1/2 "
         >
           <Link
             href="/"
@@ -96,8 +96,8 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Animated Icon-Only Menu Button on the RIGHT - Visible ONLY on Mobile (< md) */}
-        <div className="flex md:hidden items-center z-20">
+        {/* Animated Icon-Only Menu Button on the LEFT - Visible ONLY on Mobile (< md) */}
+        <div className="flex md:hidden items-center z-20 absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -126,8 +126,8 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Brand Logo physically anchored on the LEFT side */}
-        <div className="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 [direction:ltr]">
+        {/* Brand Logo physically anchored on the RIGHT side */}
+        <div className="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 [direction:ltr]">
           <Link
             href="/"
             aria-label="كاف - الرئيسية"
