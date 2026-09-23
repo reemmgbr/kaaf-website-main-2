@@ -12,7 +12,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -30,13 +30,19 @@ export function Navbar() {
   const isContact = pathname === "/contact";
 
   return (
-    <header 
-      className={`fixed top-0 start-0 end-0 z-50 w-full  transition-all duration-300 ease-in-out ${
-        scrolled 
-          ? "bg-[#03111F]/85 backdrop-blur-md border-b border-[#D2BB79]/20 py-3 shadow-2xl" 
-          : "bg-transparent py-4 sm:py-6"
-      }`}
-    >
+
+<header
+  className={`fixed top-0 start-0 end-0 z-50 w-full
+    transition-[background-color,backdrop-filter,border-color,box-shadow,padding]
+    duration-500 ease-out
+    ${
+      scrolled
+        ? "bg-[#03111F]/90 backdrop-blur-md border-b border-[#D2BB79]/20 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
+        : "bg-transparent backdrop-blur-0 border-b border-transparent py-4 sm:py-6 shadow-none"
+    }`}
+>
+
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[50px] flex items-center justify-between ">
         
         {/* Desktop Navigation Links - Centered in Header on Big Screens (md and above) */}
